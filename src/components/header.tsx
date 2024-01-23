@@ -1,4 +1,3 @@
-import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -16,17 +15,38 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import { AccountBalanceWallet, Logout, Paid } from "@mui/icons-material";
+import { MouseEvent, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 export default function MenuAppBar() {
-  const [auth] = React.useState(true);
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [auth, setAuth] = useState(true);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const navigate = useNavigate();
 
-  const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
+  const handleMenu = (event: MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleNavigatePayment = () => {
+    navigate("/home");
+  };
+
+  const handleNavigateBalance = () => {
+    navigate("/balance");
+  };
+
+  const handleLogout = () => {
+    setAuth(false);
+
+    Cookies.remove("authToken");
+    alert("Deslogado com sucesso");
+
+    navigate("/");
   };
 
   return (
@@ -87,7 +107,7 @@ export default function MenuAppBar() {
           <Box sx={{ overflow: "auto" }}>
             <List>
               <ListItem disablePadding>
-                <ListItemButton>
+                <ListItemButton onClick={handleNavigatePayment}>
                   <ListItemIcon>
                     <Paid />
                   </ListItemIcon>
@@ -95,7 +115,7 @@ export default function MenuAppBar() {
                 </ListItemButton>
               </ListItem>
               <ListItem disablePadding>
-                <ListItemButton>
+                <ListItemButton onClick={handleNavigateBalance}>
                   <ListItemIcon>
                     <AccountBalanceWallet />
                   </ListItemIcon>
@@ -105,7 +125,7 @@ export default function MenuAppBar() {
             </List>
             <Divider />
             <ListItem disablePadding>
-              <ListItemButton>
+              <ListItemButton onClick={handleLogout}>
                 <ListItemIcon>
                   <Logout />
                 </ListItemIcon>
