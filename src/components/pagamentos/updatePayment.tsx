@@ -1,4 +1,3 @@
-// Importando os módulos necessários
 import {
   Button,
   FormControl,
@@ -47,15 +46,12 @@ export default function UpdatePayment() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Buscar os saldos
         const responseBalance = await api.get("/balance", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
         setData(responseBalance.data.balance);
-
-        // Buscar os pagamentos
       } catch (error) {
         console.error("Erro ao buscar dados:", error);
       }
@@ -80,7 +76,6 @@ export default function UpdatePayment() {
           (pay) => pay.id === id
         );
 
-        // Se o pagamento for encontrado, atualizar o estado
         if (paymentToUpdate) {
           setUpdatePayment(paymentToUpdate);
         }

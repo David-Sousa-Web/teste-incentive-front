@@ -1,4 +1,3 @@
-// Importando os módulos necessários
 import {
   Button,
   FormControl,
@@ -14,7 +13,6 @@ import Cookies from "js-cookie";
 import { Balance } from "../balance/balance";
 import { useNavigate } from "react-router-dom";
 
-// Definindo o tipo para os dados do formulário
 interface FormData {
   nome: string;
   descricao: string;
@@ -22,7 +20,6 @@ interface FormData {
   saldosId: string;
 }
 
-// Componente de formulário
 export default function NewPayment() {
   const [data, setData] = useState<Balance[]>([]);
   const [formData, setFormData] = useState<FormData>({

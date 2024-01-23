@@ -81,14 +81,14 @@ export default function Balance() {
       renderCell: (params) => (
         <>
           <IconButton
-            onClick={() => handleUpdate(params.row.id)} // Substitua pelo seu manipulador de edição
+            onClick={() => handleUpdate(params.row.id)}
             size="small"
             color="primary"
           >
             <Edit />
           </IconButton>
           <IconButton
-            onClick={() => handleDelete(params.row.id)} // Substitua pelo seu manipulador de exclusão
+            onClick={() => handleDelete(params.row.id)}
             size="small"
             color="error"
           >
